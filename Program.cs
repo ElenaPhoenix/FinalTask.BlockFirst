@@ -6,7 +6,21 @@
     {
         array[i] = Console.ReadLine();
     }
-    //for (int i = 0; i < array.Length; i++) Console.Write($"{array[i]}"); // Выводим все элементы массива
+    return array;
+}
+
+string[] ThreeSymbolsArray(string[] array) // Функция генерации массива указанной длины
+{
+    var realSize = 0;
+    foreach (var value in array)
+    {
+        if (value.Length <= 3)
+        {
+            array[realSize] = value;
+            realSize++;
+            Console.Write($"{value} ");
+        }
+    }
     return array;
 }
 
@@ -17,7 +31,10 @@ try
     int count = Convert.ToInt32(Console.ReadLine());
 
     string[] createdNewAr = CreateArray(count);
-
+    Console.WriteLine();
+    Console.WriteLine("Массив из трехзначных(и менее трех знаков) элементов: ");
+    string[] threeSymbolsAr = ThreeSymbolsArray(createdNewAr);
+    Console.WriteLine();
 }
 catch
 {
