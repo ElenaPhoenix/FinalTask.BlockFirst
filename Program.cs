@@ -6,28 +6,55 @@
     {
         array[i] = Console.ReadLine();
     }
+    for (int j = 0; j <= count; j++)
+    {
+        if (j == 0) Console.Write($"[\"{array[j]},\" ");
+        else if (j == count - 1) Console.Write($"\"{array[j]}\"]");
+        else if (j < count - 1) Console.Write($"\"{array[j]}\", ");
+    }
+    Console.WriteLine();
     return array;
 }
 
 string[] ThreeSymbolsArray(string[] array) // Функция генерации массива указанной длины
 {
-    var realSize = 0;
-    foreach (var value in array)
+    int arLength = 0;
+    foreach (var el in array)
     {
-        if (value.Length <= 3)
+        if (el.Length <= 3)
+            arLength++;
+    }
+
+    string[] result = new string[arLength];
+    int i = 0;
+    foreach (var el in array) //вместо array мб любой enumerable
+    {
+        if (el.Length <= 3)
         {
-            array[realSize] = value;
-            realSize++;
-            Console.Write($"{value} ");
+            result[i] = el;
+            i++;
         }
     }
-    return array;
+
+    if (result.Length < 1) Console.WriteLine("[]"); // Вывод массива
+    else
+    {
+        Console.Write("[");
+        for (int j = 0; j <= result.Length; j++)
+        {
+            if (j == 0) Console.Write($"\"{result[j]}\", ");
+            else if (j == result.Length - 1) Console.Write($"\"{result[j]}\"");
+            else if (j < result.Length - 1) Console.Write($"\"{result[j]}\",");
+        }
+        Console.Write("]");
+    }
+    return result;
 }
 
 
 try
 {
-    Console.WriteLine($"Введите количество обособленных элементов, которые хотите ввести: ");
+    Console.WriteLine($"Введите количество обособленных элементов больше 1, которые хотите ввести: ");
     int count = Convert.ToInt32(Console.ReadLine());
 
     string[] createdNewAr = CreateArray(count);
